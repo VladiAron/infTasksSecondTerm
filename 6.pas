@@ -1,50 +1,53 @@
-Program ZadachiSix1;
-const n = 10; 
-const m = 10;
-type mass = array [1..n,1..m] of integer;
+Program ZadachiSix2;
+const n = 10;
+type mass = array [1..n] of integer;
 var matrix:mass; 
-j,summ:integer; 
+ 
 
 procedure vvod(var a:mass);
-	var i,j:integer;
+	var i:integer;
 	begin
 		for i:=1 to n do
-			for j:=1 to m do
-				a[i][j]:=50 - random(100);
+			a[i]:=50 - random(100);
 	end;
 
 procedure vivod(a:mass);
-	var i,j:integer;
-	begin
-		for i:=1 to n do
-		begin
-			writeln();
-			for j:=1 to m do
-			write(a[i][j]:4);
-		end;
-	end;
-
-procedure summa(a:mass; str:integer; var s:integer);
 	var i:integer;
 	begin
-		s := 0;
-		for i:=1 to m do
-			if(a[str][i]>0) then
-				s := s + a[str][i];
+		writeln();
+		for i:=1 to n do
+			write(a[i]:4);
+		writeln();
+	end;
+
+
+procedure sort(var a:mass);
+	var i,j,imin,min,buf:integer;
+	begin
+		
+		for j:=1 to n-1 do
+		begin
+			min:=a[j];
+			for i:=j to n do
+				if(a[i]<min) then
+				begin
+					min := a[i];
+					imin := i;
+				end;
+			buf := a[j];
+			a[j]:= min;
+			a[imin] := buf;
+
+		end;
 	end;
 
 begin
 	randomize();
 	vvod(matrix);
+	writeln('Было:');
 	vivod(matrix);
-	for j:=1 to n do
-		begin
-			writeln();
-			write('Сумма элементов строки № ');
-			write(j);
-			write(' ');
-			summa(matrix,j,summ);
-			write(summ);
-		end;
-		writeln();
+	sort(matrix);
+	writeln('Стало:');
+	vivod(matrix);
+	writeln();
 end.
