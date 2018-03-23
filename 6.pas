@@ -28,6 +28,7 @@ procedure sort(var a:mass);
 		for j:=1 to n-1 do
 		begin
 			min:=a[j];
+			imin:= j;
 			for i:=j to n do
 				if(a[i]<min) then
 				begin
