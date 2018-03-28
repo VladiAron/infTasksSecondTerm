@@ -1,7 +1,7 @@
-Program ZadachiSix4;
+Program ZadachiSix5;
 const n = 20;
-type mass = array [1..n] of Real;
-var z,x:mass;
+type mass = array [1..n] of integer;
+var x:mass;
 i:integer;
  
  
@@ -19,30 +19,34 @@ procedure vivod(a:mass);
 	begin
 		writeln();
 		for i:=1 to n do
-		begin
 			write(a[i]:4);
-			write(' ');
-		end;
 		writeln();
 	end;
 
 
-function summ(a:mass; i:integer):Real;
-	var j:integer;
+procedure sort(var a:mass);
+	var i,j,trnsfr,imax:integer;
 	begin
-		summ:=1;
-		for j:=1 to n do
-			summ:=summ*(1+1/(exp(j)+a[i])); 
+		
+		for j:=1 to n-1 do
+		begin
+			imax:=j;
+			for i:=j to n do
+				if(a[imax] < a[i]) then
+					imax:=i;
+			trnsfr:=a[j];
+			a[j]:=a[imax];
+			a[imax]:=trnsfr;
+		end; 
 	end;
 
 begin
 	randomize();
 	vvod(x);
+	writeln('До сортировки');
 	vivod(x);
-	writeln();
-	for i:=1 to n do
-		z[i]:=summ(x, i);
-	writeln('Массив полученных значений');
-	vivod(z);
+	sort(x);
+	writeln('После сортировки');
+	vivod(x);
 	writeln();
 end.
