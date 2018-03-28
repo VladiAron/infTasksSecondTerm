@@ -2,6 +2,7 @@ Program ZadachiSix4;
 const n = 20;
 type mass = array [1..n] of Real;
 var z,x:mass;
+i:integer;
  
  
 
@@ -26,26 +27,22 @@ procedure vivod(a:mass);
 	end;
 
 
-function summ(a:mass):Real;
-	var i,k:integer;
-	b:mass;
+function summ(a:mass; i:integer):Real;
+	var j:integer;
 	begin
-		summ:=0;
-		for i:=1 to n do
-		begin
-			for k:=1 to n do
-				b[i]:=sin(exp(k*(ln(a[i])))/k); 
-			summ:=summ+b[i];
-		end;
+		summ:=1;
+		for j:=1 to n do
+			summ:=summ*(1+1/(exp(j)+a[i])); 
 	end;
 
 begin
 	randomize();
-	vvod(matrix);
-	writeln('Было:');
-	vivod(matrix);
-	summ(matrix);
-	writeln('Значение функции: ');
-	writeln(summ(matrix):6);
+	vvod(x);
+	vivod(x);
+	writeln();
+	for i:=1 to n do
+		z[i]:=summ(x, i);
+	writeln('Массив полученных значений');
+	vivod(z);
 	writeln();
 end.
