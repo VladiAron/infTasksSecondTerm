@@ -1,14 +1,17 @@
-Program ZadachiSix2;
-const n = 10;
-type mass = array [1..n] of integer;
-var matrix:mass; 
+Program ZadachiSix3;
+const m = 10;
+const n = 4;
+type mass = array [1..n] of real;
+var matrix:mass;
+k:integer;
+func:real; 
  
 
 procedure vvod(var a:mass);
 	var i:integer;
 	begin
 		for i:=1 to n do
-			a[i]:=50 - random(100);
+			a[i]:= (4 - random(8))*pi;
 	end;
 
 procedure vivod(a:mass);
@@ -21,8 +24,8 @@ procedure vivod(a:mass);
 	end;
 
 
-procedure sort(var a:mass);
-	var i,j,imin,min,buf:integer;
+procedure summ(var a:mass; );
+	var j:integer;
 	begin
 		
 		for j:=1 to n-1 do
