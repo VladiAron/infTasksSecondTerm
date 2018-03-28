@@ -10,7 +10,8 @@ procedure vvod(var a:mass);
 	var i:integer;
 	begin
 		for i:=1 to m do
-			a[i]:= (4 - random(8))*pi;
+			
+			a[i]:= (random(8))*pi;
 	end;
 
 procedure vivod(a:mass);
