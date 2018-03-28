@@ -1,16 +1,15 @@
 Program ZadachiSix3;
 const m = 10;
 const n = 4;
-type mass = array [1..n] of real;
+type mass = array [1..m] of real;
 var matrix:mass;
-k:integer;
-func:real; 
+ 
  
 
 procedure vvod(var a:mass);
 	var i:integer;
 	begin
-		for i:=1 to n do
+		for i:=1 to m do
 			a[i]:= (4 - random(8))*pi;
 	end;
 
@@ -18,30 +17,22 @@ procedure vivod(a:mass);
 	var i:integer;
 	begin
 		writeln();
-		for i:=1 to n do
+		for i:=1 to m do
 			write(a[i]:4);
 		writeln();
 	end;
 
 
-procedure summ(var a:mass; );
-	var j:integer;
+function summ(a:mass):real;
+	var i,k:integer;
+	b:mass;
 	begin
-		
-		for j:=1 to n-1 do
+		summ:=0;
+		for i:=1 to m do
 		begin
-			min:=a[j];
-			imin:= j;
-			for i:=j to n do
-				if(a[i]<min) then
-				begin
-					min := a[i];
-					imin := i;
-				end;
-			buf := a[j];
-			a[j]:= min;
-			a[imin] := buf;
-
+			for k:=1 to n do
+				b[i]:=sin((a[i]*k)/k); 
+			summ:=summ+b[i];
 		end;
 	end;
 
@@ -50,8 +41,8 @@ begin
 	vvod(matrix);
 	writeln('Было:');
 	vivod(matrix);
-	sort(matrix);
-	writeln('Стало:');
-	vivod(matrix);
+	summ(matrix);
+	writeln('Значение функции: ');
+	writeln(summ(matrix):6);
 	writeln();
 end.
