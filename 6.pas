@@ -1,38 +1,41 @@
-Program ZadachiSix5;
-const n = 20;
-type mass = array [1..n] of integer;
+Program ZadachiSix6;
+const n = 10;
+m = 20;
+type mass = array [1..n,1..m] of integer;
 var x:mass;
+y:array [1..n] of integer;
 i:integer;
  
  
 
 procedure vvod(var a:mass);
-	var i:integer;
+	var i,j:integer;
 	begin
 		for i:=1 to n do
-		while (a[i] = 0) do
-			a[i]:= (100 - random(200));
+			for j:=1 to m do 
+				a[i,j]:= (100 - random(200));
 	end;
 
 procedure vivod(a:mass);
-	var i:integer;
+	var i,j:integer;
 	begin
 		writeln();
 		for i:=1 to n do
-			write(a[i]:4);
-		writeln();
+		begin
+			writeln();
+			for j:=1 to m do
+				write(a[i]:4);
+		end;
 	end;
 
 
-procedure sort(var a:mass);
-	var i,j,trnsfr,imax:integer;
+procedure maxelt(a:mass, i);
+	var j,max:integer;
 	begin
 		
-		for j:=1 to n-1 do
+		for j:=1 to m do
 		begin
-			imax:=j;
-			for i:=j to n do
-				if(a[imax] < a[i]) then
+			if(a[imax] < a[i]) then
 					imax:=i;
 			trnsfr:=a[j];
 			a[j]:=a[imax];
