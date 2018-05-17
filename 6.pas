@@ -1,14 +1,21 @@
 Program ZadachiSix6;
 const n = 10;
-m = 20;
-type mass = array [1..n,1..m] of integer;
-var x:mass;
-y:array [1..n] of integer;
+const m = 20;
+type table = array [1..n,1..m] of integer;
+type mass = array [1..n] of integer;
+var x:table;
+y:mass;
 i:integer;
  
  
+procedure vvodO(var a:mass);
+	var i:integer;
+	begin
+		for i:=1 to n do
+			a[i]:=(100 - random(200));
+	end;
 
-procedure vvod(var a:mass);
+procedure vvodD(var a:table);
 	var i,j:integer;
 	begin
 		for i:=1 to n do
@@ -16,7 +23,7 @@ procedure vvod(var a:mass);
 				a[i,j]:= (100 - random(200));
 	end;
 
-procedure vivod(a:mass);
+procedure vivodD(a:table);
 	var i,j:integer;
 	begin
 		writeln();
@@ -24,32 +31,37 @@ procedure vivod(a:mass);
 		begin
 			writeln();
 			for j:=1 to m do
-				write(a[i]:4);
+				write(a[i,j]:4);
 		end;
 	end;
 
-
-procedure maxelt(a:mass, i);
-	var j,max:integer;
+procedure vivodO(a:mass);
+	var i:integer;
 	begin
-		
+		writeln();
+		for i:=1 to n do
+			writeln(a[i]);
+	end;
+
+function maxElt(a:table; i:integer):integer;
+	var j:integer;
+	begin
+		maxElt:=a[i,1];
 		for j:=1 to m do
-		begin
-			if(a[imax] < a[i]) then
-					imax:=i;
-			trnsfr:=a[j];
-			a[j]:=a[imax];
-			a[imax]:=trnsfr;
-		end; 
+			if(maxElt < a[i,j]) then
+				maxElt:=a[i,j];	
 	end;
 
 begin
 	randomize();
-	vvod(x);
-	writeln('До сортировки');
-	vivod(x);
-	sort(x);
-	writeln('После сортировки');
-	vivod(x);
+	vvodD(x);
+	write('Дан массив');
+	vivodD(x);
+	for i:=1 to n do
+		y[i]:=maxElt(x,i);
+	writeln(); 
+	writeln();
+	writeln('Максимальные элементы каждой строки');
+	vivodO(y);
 	writeln();
 end.
