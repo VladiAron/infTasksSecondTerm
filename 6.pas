@@ -3,9 +3,7 @@ const n = 10;
 const m = 20;
 type table = array [1..n,1..m] of integer;
 type mass = array [1..n] of integer;
-var x:table;
-y:mass;
-i:integer;
+var //type here smth
  
  
 procedure vvodO(var a:mass);
@@ -43,25 +41,8 @@ procedure vivodO(a:mass);
 			writeln(a[i]);
 	end;
 
-function maxElt(a:table; i:integer):integer;
-	var j:integer;
-	begin
-		maxElt:=a[i,1];
-		for j:=1 to m do
-			if(maxElt < a[i,j]) then
-				maxElt:=a[i,j];	
-	end;
+
 
 begin
-	randomize();
-	vvodD(x);
-	write('Дан массив');
-	vivodD(x);
-	for i:=1 to n do
-		y[i]:=maxElt(x,i);
-	writeln(); 
-	writeln();
-	writeln('Максимальные элементы каждой строки');
-	vivodO(y);
-	writeln();
+	randomize;
 end.
