@@ -3,7 +3,8 @@ const n = 10;
 const m = 20;
 type table = array [1..n,1..m] of integer;
 type mass = array [1..n] of integer;
-var //type here smth
+var 
+	x:table;
  
  
 procedure vvodO(var a:mass);
@@ -41,8 +42,34 @@ procedure vivodO(a:mass);
 			writeln(a[i]);
 	end;
 
-
+procedure maxSummaElem(a:table);
+var
+	i,j,imax,max,sum:integer;
+	begin
+		max:=-32000;
+		for i:=1 to n do 
+			begin
+				sum:=0;
+				for j:=1 to m do 
+					sum := sum + a[i,j];
+				if(sum > max) then
+				begin
+					max:=sum;
+					imax:=i;
+				end;
+			end;
+		write('Номер строки с самой большой суммой элементов: ');
+		writeln(imax);
+		write('Суммв элементов этой строки: ');
+		writeln(max);
+	end;
 
 begin
 	randomize;
+	vvodD(x);
+	writeln('Дан массив');
+	vivodD(x);
+	writeln();
+	maxSummaElem(x);
+	writeln();
 end.
