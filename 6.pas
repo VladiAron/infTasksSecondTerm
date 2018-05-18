@@ -1,9 +1,9 @@
-Program ZadachiSix6;
-const n = 10;
-const m = 20;
-type table = array [1..n,1..m] of integer;
-type mass = array [1..n] of integer;
-var //type here smth
+Program ZadachiSix10;
+const n = 20;
+type mass = array [1..n] of Real;
+var b,c:mass;
+i:integer;
+
  
  
 procedure vvodO(var a:mass);
@@ -11,26 +11,6 @@ procedure vvodO(var a:mass);
 	begin
 		for i:=1 to n do
 			a[i]:=(100 - random(200));
-	end;
-
-procedure vvodD(var a:table);
-	var i,j:integer;
-	begin
-		for i:=1 to n do
-			for j:=1 to m do 
-				a[i,j]:= (100 - random(200));
-	end;
-
-procedure vivodD(a:table);
-	var i,j:integer;
-	begin
-		writeln();
-		for i:=1 to n do
-		begin
-			writeln();
-			for j:=1 to m do
-				write(a[i,j]:4);
-		end;
 	end;
 
 procedure vivodO(a:mass);
@@ -41,8 +21,28 @@ procedure vivodO(a:mass);
 			writeln(a[i]);
 	end;
 
-
+function maximum(a:Real):Real;
+	var x,func:Real;
+	begin
+		maximum := -32000;
+		x:=-2;
+		repeat
+			func:=2*exp(a*x-5*sqr(x));
+			x:=x+0.1;
+			if(func > maximum) then
+				maximum:=func;
+		until x <> 2;
+	end;
 
 begin
 	randomize;
+	vvodO(b);
+	writeln('Массив b');
+	vivodO(b);
+	writeln();
+	for i:=1 to n do
+		c[i]:=maximum(b[i]);
+	writeln('Максимумы функции');
+	vivodO(c);
+	writeln();
 end.
