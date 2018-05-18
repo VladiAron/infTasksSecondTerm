@@ -1,17 +1,10 @@
-Program ZadachiSix6;
-const n = 10;
+Program ZadachiSix11;
+const n = 20;
 const m = 20;
 type table = array [1..n,1..m] of integer;
-type mass = array [1..n] of integer;
-var //type here smth
+var plus,minus:integer;
+mass:table;
  
- 
-procedure vvodO(var a:mass);
-	var i:integer;
-	begin
-		for i:=1 to n do
-			a[i]:=(100 - random(200));
-	end;
 
 procedure vvodD(var a:table);
 	var i,j:integer;
@@ -33,16 +26,32 @@ procedure vivodD(a:table);
 		end;
 	end;
 
-procedure vivodO(a:mass);
-	var i:integer;
+procedure count(a:table; var p,m:integer);
+	var i,j:integer;
 	begin
-		writeln();
+		p:=0;
+		m:=0;
 		for i:=1 to n do
-			writeln(a[i]);
+			for j:=1 to n do
+			begin
+				if(a[i,j] > 0)then
+					p:=p+1;
+
+				if (a[i,j] < 0) then
+					m:=m+1;
+			end;
 	end;
-
-
 
 begin
 	randomize;
+	vvodD(mass);
+	writeln('Дан массив');
+	vivodD(mass);
+	count(mass, plus, minus);
+	writeln();
+	write('Количество положительных элементов в массиве: ');
+	writeln(plus);
+	write('Количество отрицательных элементов в массиве: ');
+	writeln(minus);
+	writeln();
 end.
