@@ -1,63 +1,63 @@
-Program ZadachiSix22;
-const n = 10;
-const m = 10;
-type table = array [1..n,1..m] of integer;
-var x:table;
+
+Program ZadachiSix23;
+var max,min:Real; //type here smth
  
- 
-procedure vvodD(var a:table);
-	var i,j:integer;
+procedure minFuncArg(var max,min:Real);
+var e,x,xmax,xmin:Real;
+a,b,c,d:integer;
+begin
+	a:=random(100);
+	c:=random(100);
+	b:=random(100)+a+c;
+	d:=random(100);
+	e:=0.1;
+	x:=-10;
+	xmax:=10;
+	max:=a*sqr(x)+b*sqr(x)+c*x+d;
+	min:=a*sqr(x)+b*sqr(x)+c*x+d;
+	while (x<=xmax) do
 	begin
-		for i:=1 to n do
-			for j:=1 to m do 
-				a[i,j]:= (100 - random(200));
+		if(max < a*sqr(x)+b*sqr(x)+c*x+d) then
+		begin
+			max:=a*sqr(x)+b*sqr(x)+c*x+d;
+			xmax:=x;
+		end
+		else
+		if(min > a*sqr(x)+b*sqr(x)+c*x+d) then
+		begin
+			min:=a*sqr(x)+b*sqr(x)+c*x+d;
+			xmin:=x;
+		end;
+		x:=x+e;
 	end;
 
-procedure vivodD(a:table);
-	var i,j:integer;
+	e:=0.01;
+	xmax:=xmin+0.1;
+	x:=xmin-0.1;
+	min:=a*sqr(x)+b*sqr(x)+c*x+d;
+	while ((x<=xmax) and (min > a*sqr(x)+b*sqr(x)+c*x+d)) do
 	begin
-		writeln();
-		for i:=1 to n do
-		begin
-			writeln();
-			for j:=1 to m do
-				write(a[i,j]:4);
-		end;
+		min:=a*sqr(x)+b*sqr(x)+c*x+d;
 	end;
-
-procedure perestanovka(var a:table; num,j:integer);
-var tr:integer;
-begin
-	tr:=a[num,num];
-	a[num,num]:=a[num,j];
-	a[num,j]:=tr;
-end;
-
-procedure minp(var a:table);
-var i,j,jmin,min:integer;
-begin
-	for i:=1 to n do 
-		begin
-			min:=a[i,1];
-			jmin:=1;
-			for j:=1 to n do
-				if(min > a[i,j]) then
-				begin
-					jmin:=j;
-					min:=a[i,j];
-				end;
-			perestanovka(a,i,jmin);
-		end;
-end;
+	x:=x+e;
+	
+	writeln();
+	write('a = ');
+	writeln(a);
+	write('b = ');
+	writeln(b);
+	write('c = ');
+	writeln(c);
+	write('d = ');
+	writeln(d);	
+end; 
 
 begin
 	randomize;
-	vvodD(x);
-	writeln('Данн массив');
-	vivodD(x);
-	minp(x);
-	writeln();
-	writeln('После преобразований');
-	vivodD(x);
-	writeln();
+	minFuncArg(max,min);
+	write('Максимальное значение функции ');
+	writeln(max);
+	write('Минимальое значение функции ');
+	writeln(min);
+
 end.
