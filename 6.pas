@@ -1,18 +1,10 @@
-Program ZadachiSix6;
+Program ZadachiSix22;
 const n = 10;
-const m = 20;
+const m = 10;
 type table = array [1..n,1..m] of integer;
-type mass = array [1..n] of integer;
-var //type here smth
+var x:table;
  
  
-procedure vvodO(var a:mass);
-	var i:integer;
-	begin
-		for i:=1 to n do
-			a[i]:=(100 - random(200));
-	end;
-
 procedure vvodD(var a:table);
 	var i,j:integer;
 	begin
@@ -33,16 +25,39 @@ procedure vivodD(a:table);
 		end;
 	end;
 
-procedure vivodO(a:mass);
-	var i:integer;
-	begin
-		writeln();
-		for i:=1 to n do
-			write(a[i]:4);
-	end;
+procedure perestanovka(var a:table; num,j:integer);
+var tr:integer;
+begin
+	tr:=a[num,num];
+	a[num,num]:=a[num,j];
+	a[num,j]:=tr;
+end;
 
-
+procedure minp(var a:table);
+var i,j,jmin,min:integer;
+begin
+	for i:=1 to n do 
+		begin
+			min:=a[i,1];
+			jmin:=1;
+			for j:=1 to n do
+				if(min > a[i,j]) then
+				begin
+					jmin:=j;
+					min:=a[i,j];
+				end;
+			perestanovka(a,i,jmin);
+		end;
+end;
 
 begin
 	randomize;
+	vvodD(x);
+	writeln('Данн массив');
+	vivodD(x);
+	minp(x);
+	writeln();
+	writeln('После преобразований');
+	vivodD(x);
+	writeln();
 end.
