@@ -1,9 +1,8 @@
-Program ZadachiSix6;
-const n = 10;
-const m = 20;
-type table = array [1..n,1..m] of integer;
+Program ZadachiSix15;
+const n = 20;
 type mass = array [1..n] of integer;
-var //type here smth
+var a:mass;
+z:Real;
  
  
 procedure vvodO(var a:mass);
@@ -13,36 +12,41 @@ procedure vvodO(var a:mass);
 			a[i]:=(100 - random(200));
 	end;
 
-procedure vvodD(var a:table);
-	var i,j:integer;
-	begin
-		for i:=1 to n do
-			for j:=1 to m do 
-				a[i,j]:= (100 - random(200));
-	end;
-
-procedure vivodD(a:table);
-	var i,j:integer;
-	begin
-		writeln();
-		for i:=1 to n do
-		begin
-			writeln();
-			for j:=1 to m do
-				write(a[i,j]:4);
-		end;
-	end;
-
 procedure vivodO(a:mass);
 	var i:integer;
 	begin
 		writeln();
 		for i:=1 to n do
-			writeln(a[i]);
+			write(a[i]:4);
 	end;
 
-
+procedure func(a:mass; var z:Real);
+var i,j:integer;
+b,pr:Real;
+begin
+	z:=0;
+	b:=0;
+	pr:=1;
+	for i:=1 to n do
+	begin
+		pr:=1;
+		for j := 0 to 10 do
+		begin
+			pr:=pr*((a[i]+b)/2);
+			b:=b+0.1;
+		end;
+		z:=z+a[i]*pr;
+	end;
+end;
 
 begin
 	randomize;
+	vvodO(a);
+	writeln('Массив для рассчетов');
+	vivodO(a);
+	func(a,z);
+	writeln();
+	write('Значение функции ');
+	writeln(z:5);
+	writeln();
 end.
