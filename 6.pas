@@ -1,6 +1,6 @@
-Program ZadachiSix6;
+Program ZadachiSix18;
 const n = 10;
-const m = 20;
+const m = 15;
 type table = array [1..n,1..m] of integer;
 type mass = array [1..n] of integer;
 var //type here smth
