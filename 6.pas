@@ -38,7 +38,7 @@ procedure vivodO(a:mass);
 	begin
 		writeln();
 		for i:=1 to n do
-			writeln(a[i]);
+			write(a[i]:4);
 	end;
 
 
