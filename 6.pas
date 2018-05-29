@@ -1,48 +1,43 @@
-Program ZadachiSix6;
-const n = 10;
-const m = 20;
-type table = array [1..n,1..m] of integer;
-type mass = array [1..n] of integer;
-var //type here smth
+Program ZadachiSix20;
+var x:Real; //type here smth
  
- 
-procedure vvodO(var a:mass);
-	var i:integer;
+procedure minFuncArg(var xmin:Real);
+var e,min,x,xmax:Real;
+a:integer;
+begin
+	a:=random(100) - 50;
+	e:=0.2;
+	x:=0.2;
+	xmax:=10;
+	min:=a*x-ln(x);
+	while (x<=xmax) do
 	begin
-		for i:=1 to n do
-			a[i]:=(100 - random(200));
-	end;
-
-procedure vvodD(var a:table);
-	var i,j:integer;
-	begin
-		for i:=1 to n do
-			for j:=1 to m do 
-				a[i,j]:= (100 - random(200));
-	end;
-
-procedure vivodD(a:table);
-	var i,j:integer;
-	begin
-		writeln();
-		for i:=1 to n do
+		if(min < a*x-ln(x)) then
 		begin
-			writeln();
-			for j:=1 to m do
-				write(a[i,j]:4);
+			min:=a*x-ln(x);
+			xmin:=x;
 		end;
+		x:=x+e;
 	end;
-
-procedure vivodO(a:mass);
-	var i:integer;
+	e:=0.01;
+	xmax:=xmin+0.2;
+	x:=xmin-0.2;
+	min:=a*x-ln(x);
+	while ((x<=xmax) and (min > a*x-ln(x))) do
 	begin
-		writeln();
-		for i:=1 to n do
-			write(a[i]:4);
+		min:=a*x-ln(x);
+		xmin:=x;
+		x:=x+e;
 	end;
-
-
+	writeln();
+	write('a = ');
+	writeln(a);
+	
+end; 
 
 begin
 	randomize;
+	minFuncArg(x);
+	write('Аргумент при котором функция принимает минимальное значение ');
+	writeln(x:4);
 end.
