@@ -1,63 +1,59 @@
+Program ZadachiSix24;
+const
+	n = 50;
 
-Program ZadachiSix23;
-var max,min:Real; //type here smth
+type mass = array[1..n] of Real;
+var count:integer;
+z:mass;
+
+function func(x:Real; a,b,y,f:integer): Real;
+begin
+	func:= a*exp(-1*b*x)*sin(x*y+f);
+end;
  
-procedure minFuncArg(var max,min:Real);
-var e,x,xmax,xmin:Real;
-a,b,c,d:integer;
+procedure maxFunc(var z:mass; var count:integer);
+var x:Real;
+a,b,y,f:integer;
 begin
 	a:=random(100);
-	c:=random(100);
-	b:=random(100)+a+c;
-	d:=random(100);
-	e:=0.1;
-	x:=-10;
-	xmax:=10;
-	max:=a*sqr(x)+b*sqr(x)+c*x+d;
-	min:=a*sqr(x)+b*sqr(x)+c*x+d;
-	while (x<=xmax) do
+	b:=random(100);
+	y:=random(100);
+	f:=random(100);
+	count:=0;
+	x:=0;
+	while( (not ((func(x,a,b,y,f) > func(x+0.1,a,b,y,f)) and (func(x,a,b,y,f) > func(x-0.1,a,b,y,f)))) and (x <= 5) ) do
+	 	x:=x+0.1;
+
+	while x <= 5 do
 	begin
-		if(max < a*sqr(x)+b*sqr(x)+c*x+d) then
+		if((func(x,a,b,y,f) > func(x+0.1,a,b,y,f)) and (func(x,a,b,y,f) > func(x-0.1,a,b,y,f)) ) then
 		begin
-			max:=a*sqr(x)+b*sqr(x)+c*x+d;
-			xmax:=x;
-		end
-		else
-		if(min > a*sqr(x)+b*sqr(x)+c*x+d) then
-		begin
-			min:=a*sqr(x)+b*sqr(x)+c*x+d;
-			xmin:=x;
+			count:=count + 1;
+			z[count+1]:=func(x,a,b,y,f);
 		end;
-		x:=x+e;
+		if ((func(x,a,b,y,f) < func(x+0.1,a,b,y,f)) and (func(x,a,b,y,f) < func(x-0.1,a,b,y,f)) ) then
+		begin
+			count:=count + 1;
+			z[count]:=func(x,a,b,y,f);
+		end;
+		x:=x+0.1;
 	end;
 
-	e:=0.01;
-	xmax:=xmin+0.1;
-	x:=xmin-0.1;
-	min:=a*sqr(x)+b*sqr(x)+c*x+d;
-	while ((x<=xmax) and (min > a*sqr(x)+b*sqr(x)+c*x+d)) do
-	begin
-		min:=a*sqr(x)+b*sqr(x)+c*x+d;
-	end;
-	x:=x+e;
-	
-	writeln();
-	write('a = ');
-	writeln(a);
-	write('b = ');
-	writeln(b);
-	write('c = ');
-	writeln(c);
-	write('d = ');
-	writeln(d);	
-end; 
+end;
+
+procedure vivod(a:mass; num:integer);
+	var i:integer;
+begin
+	for i:=1 to num do
+		write(a[i]);
+		write(' ');
+end;
 
 begin
 	randomize;
-	minFuncArg(max,min);
-	write('Максимальное значение функции ');
-	writeln(max);
-	write('Минимальое значение функции ');
-	writeln(min);
+	maxFunc(z,count);
+	writeln('Максимальные значения функции ');
+	vivod(z,count);
+	writeln();
 
 end.
