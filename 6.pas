@@ -12,7 +12,7 @@ begin
 	min:=a*x-ln(x);
 	while (x<=xmax) do
 	begin
-		if(min < a*x-ln(x)) then
+		if(min > a*x-ln(x)) then
 		begin
 			min:=a*x-ln(x);
 			xmin:=x;
@@ -39,5 +39,5 @@ begin
 	randomize;
 	minFuncArg(x);
 	write('Аргумент при котором функция принимает минимальное значение ');
-	writeln(x:4);
+	writeln(x);
 end.
