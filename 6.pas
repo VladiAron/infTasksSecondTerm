@@ -1,8 +1,8 @@
-Program ZadachiL1;
-const n = 10;
+Program ZadachiL2; //Последний отрицательный эллемент массива
+const n = 20;
 type mass = array [1..n] of integer;
-var x, evenNums:mass;
-count:integer; 
+var x:mass;
+elem:integer; 
  
 procedure vvodO(var a:mass; num:integer);
 	var i:integer;
@@ -19,15 +19,17 @@ procedure vivodO(a:mass; num:integer);
 			write(a[i]:4);
 	end;
 
-procedure countAllEvenElts(var b:mass; a:mass; var count:integer);
+procedure lastOtr(a:mass; var otr:integer);
 var i:integer;
 begin
-	for i:=1 to n do
-		if(a[i] mod 2 = 0)then
+	for i := n downto 1 do
+	begin
+		if(a[i] < 0) then
 		begin
-			count:=count+1;
-			b[count]:=i;
+			otr:=a[i];
+			break;
 		end;
+	end;
 end;
 
 begin
@@ -35,9 +37,9 @@ begin
 	vvodO(x,n);
 	writeln('Данн массив');
 	vivodO(x,n);
-	countAllEvenElts(evenNums,x,count);
+	lastOtr(x,elem);
 	writeln();
-	writeln('Номера четных эллементов массива');
-	vivodO(evenNums, count);
+	write('Последний отрицательный эллемент ');
+	writeln(elem);
 	writeln();
 end.
