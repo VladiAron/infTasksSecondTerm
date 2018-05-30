@@ -1,9 +1,10 @@
-Program ZadachiSix6;
-const n = 10;
+Program ZadachiSix12;
+const n = 20;
 const m = 20;
 type table = array [1..n,1..m] of integer;
 type mass = array [1..n] of integer;
-var //type here smth
+var y:mass;
+x:table;
  
  
 procedure vvodO(var a:mass);
@@ -36,13 +37,33 @@ procedure vivodD(a:table);
 procedure vivodO(a:mass);
 	var i:integer;
 	begin
-		writeln();
 		for i:=1 to n do
-			writeln(a[i]);
+			write(a[i]:4);
 	end;
 
+procedure countOfPol(a:table; var b:mass);
+	var i,j:integer;
+	begin
+		for j:=1 to n do
+		begin
+			b[j]:=0;
+			for i:=1 to n do
+				if (a[i][j] > 0 ) then
+					b[j]:=b[j] + 1; 
+		end;
+	end;
 
 
 begin
 	randomize;
+	vvodD(x);
+	writeln();
+	writeln('Данна матрица ');
+	vivodD(x);
+	countOfPol(x,y);
+	writeln();
+	writeln('Количество положительных элементров в столбцах ');
+	vivodO(y);
+	writeln();
+
 end.
