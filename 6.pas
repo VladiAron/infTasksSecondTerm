@@ -31,8 +31,8 @@ begin
 	vvodO(x,n);
 	writeln('Данн массив');
 	vivodO(x,n);
-	moveFrom(x,6);
-	x[5]:=100;
+	moveFrom(x,7);
+	x[6]:=100;
 	writeln();
 	writeln('После вставки');
 	vivodO(x,n);
