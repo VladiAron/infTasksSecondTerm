@@ -1,18 +1,10 @@
-Program ZadachiSix6;
+Program ZadachiSix14;
 const n = 10;
-const m = 20;
+const m = 15;
 type table = array [1..n,1..m] of integer;
-type mass = array [1..n] of integer;
-var //type here smth
+var x:table;
  
  
-procedure vvodO(var a:mass);
-	var i:integer;
-	begin
-		for i:=1 to n do
-			a[i]:=(100 - random(200));
-	end;
-
 procedure vvodD(var a:table);
 	var i,j:integer;
 	begin
@@ -33,16 +25,35 @@ procedure vivodD(a:table);
 		end;
 	end;
 
-procedure vivodO(a:mass);
-	var i:integer;
-	begin
-		writeln();
-		for i:=1 to n do
-			writeln(a[i]);
-	end;
+procedure job(var a:table);
+var i,j,max,maxi,maxj:integer;
+begin
+	max:=a[1,1];
+	maxi:=1;
+	maxj:=1;
+	for i:=1 to n do
+		for j:=1 to n do
+			if a[i,j]>max then
+			begin
+				max:=a[i,j];
+				maxi:=i;
+				maxj:=j;
+			end;
+	for i:=1 to n do
+		a[i,maxj]:=0;
+	for j:=1 to m do
+		a[maxi,j]:=0;
 
-
+end;
 
 begin
 	randomize;
+	vvodD(x);
+	writeln('Данна матрица ');
+	vivodD(x);
+	writeln();
+	job(x);
+	writeln('Матрица после изменений ');
+	vivodD(x);
+	writeln();
 end.
